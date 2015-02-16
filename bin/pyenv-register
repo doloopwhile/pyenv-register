@@ -43,7 +43,7 @@ if [ ${#ARGS[@]} -eq 2 ]; then
   NAME=${ARGS[1]}
 else
   NAME=$(
-    $PYTHON -c '
+    "$PYTHON" -c '
 from platform import *
 import sys
 imp = python_implementation().lower()
@@ -59,16 +59,16 @@ fi
 DEST_DIR="$PYENV_ROOT/versions/$NAME"
 echo "Register $PYTHON => $DEST_DIR"
 
-if [ $FORCE -eq "0" ] && [ -e $DEST_DIR ]; then
+if [ $FORCE -eq "0" ] && [ -e "$DEST_DIR" ]; then
   echo "$DEST_DIR already exists. Use --force option to override." >&2
   exit 1
 fi
 
 VIRTUALENV_OPTION="--system-site-packages"
 
-if $PYTHON -c 'import virtualenv' &> /dev/null; then
+if "$PYTHON" -c 'import virtualenv' &> /dev/null; then
   # Use installed virtualenv
-  $PYTHON -m virtualenv -p "$PYTHON" $VIRTUALENV_OPTION $DEST_DIR || {
+  "$PYTHON" -m virtualenv -p "$PYTHON" $VIRTUALENV_OPTION "$DEST_DIR" || {
     exit 1
   }
 else
@@ -83,7 +83,7 @@ else
 
   VIRTUALENV_URL=https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.11.4.tar.gz
   echo "Download $VIRTUALENV_URL"
-  cd $TEMP_DIR
+  cd "$TEMP_DIR"
   wget -q "$VIRTUALENV_URL" -O virtualenv.tgz || {
     echo "pyenv: Failed to download virtualenv" >&2
     exit 1
@@ -93,7 +93,7 @@ else
     exit 1
   }
 
-  $PYTHON virtualenv.py -p "$PYTHON" $VIRTUALENV_OPTION $DEST_DIR || {
+  "$PYTHON" virtualenv.py -p "$PYTHON" $VIRTUALENV_OPTION "$DEST_DIR" || {
     exit 1
   }
 fi
