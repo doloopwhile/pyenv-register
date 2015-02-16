@@ -68,7 +68,7 @@ VIRTUALENV_OPTION="--system-site-packages"
 
 if $PYTHON -c 'import virtualenv' &> /dev/null; then
   # Use installed virtualenv
-  $PYTHON -m virtualenv $DEST_DIR $VIRTUALENV_OPTION || {
+  $PYTHON -m virtualenv -p "$PYTHON" $VIRTUALENV_OPTION $DEST_DIR || {
     exit 1
   }
 else
@@ -93,7 +93,7 @@ else
     exit 1
   }
 
-  $PYTHON virtualenv.py $DEST_DIR $VIRTUALENV_OPTION || {
+  $PYTHON virtualenv.py -p "$PYTHON" $VIRTUALENV_OPTION $DEST_DIR || {
     exit 1
   }
 fi
