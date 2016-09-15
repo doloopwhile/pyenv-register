@@ -81,7 +81,7 @@ else
     exit 1
   fi
 
-  VIRTUALENV_URL=https://pypi.python.org/packages/source/v/virtualenv/virtualenv-15.0.3.tar.gz
+  VIRTUALENV_URL=https://pypi.io/packages/source/v/virtualenv/virtualenv-15.0.3.tar.gz
   echo "Download $VIRTUALENV_URL"
   cd "$TEMP_DIR"
   wget -q "$VIRTUALENV_URL" -O virtualenv.tgz || {
