@@ -12,7 +12,7 @@ Installation
 ------------
 ### Install as a pyenv plugin
 
-    $ git clone https://github.com/doloopwhile/pyenv-register.git ~/.pyenv/plugins/pyenv-register
+    $ git clone https://github.com/doloopwhile/pyenv-register.git $(pyenv root)/plugins/pyenv-register
     $ exec "$SHELL"
 
 Usage
