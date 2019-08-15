@@ -71,6 +71,11 @@ if "$PYTHON" -c 'import virtualenv' &> /dev/null; then
   "$PYTHON" -m virtualenv -p "$PYTHON" $VIRTUALENV_OPTION "$DEST_DIR" || {
     exit 1
   }
+elif "$PYTHON" -c 'import venv' @> /dev/null; then
+  # Use built-in venv 
+  "$PYTHON" -m venv $VIRTUALENV_OPTION "$DEST_DIR" || {
+    exit 1
+  }
 else
   # Virtualenv is not installed, download script
   echo "virtualenv is not installed to $PYTHON"
